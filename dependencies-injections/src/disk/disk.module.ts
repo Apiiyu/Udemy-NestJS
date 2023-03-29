@@ -4,5 +4,6 @@ import { PowerSupplyModule } from 'src/power-supply/power-supply.module';
 @Module({
   imports: [PowerSupplyModule],
   providers: [DiskService],
+  exports: [DiskService],
 })
 export class DiskModule {}
