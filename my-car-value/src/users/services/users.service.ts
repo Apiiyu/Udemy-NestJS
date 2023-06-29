@@ -27,4 +27,17 @@ export class UsersService {
       where: { email },
     });
   }
+
+  async update(id: number, attrs: Partial<UserEntity>) {
+    // return this.UserRepository.update(id, attrs); // ? Method update is expected to have arguments just plain object, not entity like method save. So if we've hooks inside our entity, they won't be called.
+
+    const user = await this.findOne(id);
+
+    if (!user) {
+      throw new Error('user not found');
+    }
+
+    Object.assign(user, attrs); // ? Object.assign is used to copy the values of all enumerable own properties from one or more source objects to a target object. It will copy all the properties from attrs to user.
+    return this.UserRepository.save(user);
+  }
 }
