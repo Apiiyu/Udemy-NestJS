@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../entities/user.entity';
@@ -34,7 +34,7 @@ export class UsersService {
     const user = await this.findOne(id);
 
     if (!user) {
-      throw new Error('user not found');
+      throw new NotFoundException('user not found');
     }
 
     Object.assign(user, attrs); // ? Object.assign is used to copy the values of all enumerable own properties from one or more source objects to a target object. It will copy all the properties from attrs to user.
@@ -45,7 +45,7 @@ export class UsersService {
     const user = await this.findOne(id);
 
     if (!user) {
-      throw new Error('user not found');
+      throw new NotFoundException('user not found');
     }
 
     return this.UserRepository.remove(user); // ? Method remove is working with entity, not plain object. So if we've hooks inside our entity, they will be called. Is it good or bad? It depends on your needs. For example, if we just want to remove the entity from the database, we can use method delete. Because it's faster than remove. But if we want to do something before removing the entity, we can use method remove.
