@@ -7,3 +7,24 @@ content-type: application/json
   "email": "rafi@dev.com",
   "password": "Sample123"
 }
+
+
+### Find a particular user with a given ID
+GET http://localhost:1337/api/v1/authentication/1
+
+
+### Find all users with a given email
+GET http://localhost:1337/api/v1/authentication?email=rafi.k@bts.id
+
+
+### Delete a particular user with a given ID
+DELETE http://localhost:1337/api/v1/authentication/2
+
+
+### Update a particular user with a given ID
+PATCH http://localhost:1337/api/v1/authentication/1
+content-type: application/json
+
+{
+  "email": "update@email.com"
+}
