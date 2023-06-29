@@ -1,0 +1,9 @@
+### Create a new UserEntity
+
+POST http://localhost:1337/api/v1/authentication/create-user
+content-type: application/json
+
+{
+  "email": "rafi@dev.com",
+  "password": "Sample123"
+}

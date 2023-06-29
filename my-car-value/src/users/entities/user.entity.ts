@@ -1,5 +1,12 @@
 /* eslint-disable prettier/prettier */
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  AfterInsert,
+  AfterUpdate,
+  AfterRemove,
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class UserEntity {
@@ -11,4 +18,22 @@ export class UserEntity {
 
   @Column()
   password: string;
+
+  /**
+   * Hooks
+   */
+  @AfterInsert()
+  logInsert() {
+    console.log('Inserted User with id', this.id);
+  }
+
+  @AfterUpdate()
+  logUpdate() {
+    console.log('Updated User with id', this.id);
+  }
+
+  @AfterRemove()
+  logRemove() {
+    console.log('Removed User with id', this.id);
+  }
 }

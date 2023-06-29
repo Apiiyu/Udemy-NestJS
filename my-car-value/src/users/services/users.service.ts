@@ -15,4 +15,16 @@ export class UsersService {
 
     return this.UserRepository.save(user); // ? Save function is used to save the entity to the database
   }
+
+  findOne(id: number) {
+    return this.UserRepository.findOne({
+      where: { id },
+    });
+  }
+
+  find(email: string) {
+    return this.UserRepository.find({
+      where: { email },
+    });
+  }
 }

@@ -9,6 +9,8 @@ async function bootstrap() {
       whitelist: true, // ? Remove all properties that are not defined in the DTO. Or if we explain it as technical, It will remove all properties (extraneous properties) that are not defined in the DTO.
     }),
   );
-  await app.listen(1337);
+  await app.listen(1337, () => {
+    console.log('Listening at http://localhost:1337');
+  });
 }
 bootstrap();
